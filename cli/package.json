@@ -1,0 +1,10 @@
+{
+  "name": "create-base-template",
+  "version": "1.0.0",
+  "description": "CLI para instanciar projetos a partir do base-template",
+  "type": "module",
+  "bin": {
+    "create-base-template": "./create-base-template.mjs"
+  },
+  "license": "MIT"
+}

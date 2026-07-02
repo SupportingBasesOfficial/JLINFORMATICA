@@ -1,4 +1,7 @@
 import "@repo/tailwind-config/globals.css";
+import { Toaster } from "@repo/ui";
+
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata = {
   title: "Base Template",
@@ -12,8 +15,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR">
-      <body>{children}</body>
+    <html lang="pt-BR" suppressHydrationWarning>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Toaster />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

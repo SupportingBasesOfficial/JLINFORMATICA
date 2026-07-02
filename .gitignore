@@ -43,3 +43,18 @@ Thumbs.db
 !.vscode/extensions.json
 !.vscode/settings.json
 .history/
+
+# --- Playwright ---
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# --- Storybook ---
+storybook-static/
+
+# --- Bundle Analyzer ---
+analyze/
+
+# --- Lighthouse CI ---
+.lighthouseci/
