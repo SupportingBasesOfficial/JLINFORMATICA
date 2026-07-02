@@ -12,6 +12,7 @@ out/
 build/
 dist/
 .vercel
+*.tsbuildinfo
 
 # --- Variáveis de Ambiente (Segurança Máxima) ---
 .env
@@ -29,13 +30,13 @@ yarn-error.log*
 pnpm-debug.log*
 *.log
 
-# --- Arquivos de Sistema e IDEs (Foco em Pendrive/Windows) ---
+# --- Arquivos de Sistema e IDEs ---
 .DS_Store
 Thumbs.db
-desktop.ini
-$RECYCLE.BIN/
-System Volume Information/
 *.pem
+
+# --- Dev Containers ---
+.devcontainer/.env
 
 # --- Cache do Windsurf/VS Code ---
 .vscode/*
