@@ -15,7 +15,15 @@
       "dependsOn": ["^lint"],
       "outputs": []
     },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
     "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "storybook": {
       "cache": false,
       "persistent": true
     }

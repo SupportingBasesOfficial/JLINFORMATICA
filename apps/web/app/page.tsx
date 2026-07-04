@@ -8,6 +8,8 @@ import {
   CardTitle,
 } from "@repo/ui";
 
+import { ThemeToggle } from "@/components/theme-toggle";
+
 export default async function HomePage() {
   const supabase = await createClient();
   const {
@@ -15,7 +17,10 @@ export default async function HomePage() {
   } = await supabase.auth.getUser();
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-background p-4">
+    <main className="min-h-screen flex items-center justify-center bg-background p-4 relative">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl">Base Template Universal</CardTitle>

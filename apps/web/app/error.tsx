@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 
 import { Button } from "@repo/ui";
+import { logger } from "@repo/logger";
 
 /**
  * Error boundary global.
@@ -18,8 +19,10 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log do erro para observabilidade (substitua por @repo/logger quando implementado)
-    console.error(error);
+    logger.error(
+      { err: error, digest: error.digest },
+      "Error boundary capturou erro de runtime",
+    );
   }, [error]);
 
   return (

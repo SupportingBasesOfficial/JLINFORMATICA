@@ -1,0 +1,11 @@
+-- Seed script — dados de exemplo para desenvolvimento.
+--
+-- Aplicar com: npx supabase db push --db-url <sua-url> ou via Supabase Studio SQL Editor.
+-- NÃO usar em produção. Este arquivo é para desenvolvimento e testes apenas.
+--
+-- Adicione seus dados de exemplo abaixo. Exemplo:
+--
+-- INSERT INTO public.exemplo (id, nome) VALUES
+--   ('00000000-0000-0000-0000-000000000001', 'Item 1'),
+--   ('00000000-0000-0000-0000-000000000002', 'Item 2')
+-- ON CONFLICT DO NOTHING;
