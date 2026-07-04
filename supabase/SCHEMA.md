@@ -6,9 +6,9 @@
 
 ## 📊 Status do Banco de Dados
 
-**Estado Atual:** ✅ **Limpo e Pronto para Uso**  
-**Última Atualização:** 2026-05-09  
-**Versão da Migration:** `20260509000001_initial_setup`
+**Estado Atual:** ✅ **Limpo com Exemplo de RLS**  
+**Última Atualização:** 2026-07-04  
+**Versão da Migration:** `20260703000001_example_profiles_with_rls`
 
 ---
 
@@ -33,20 +33,17 @@ erDiagram
         timestamp created_at
     }
 
-    %% ============================================================================
-    %% EXEMPLO DE COMO ADICIONAR SUA PRIMEIRA TABELA:
-    %% ============================================================================
-    %%
-    %% SUA_TABELA {
-    %%     uuid id PK "Chave primária"
-    %%     uuid user_id FK "Referência ao auth.users"
-    %%     string nome "Campo de exemplo"
-    %%     timestamp criado_em "Timestamp de criação"
-    %%     timestamp atualizado_em "Timestamp de atualização (trigger)"
-    %% }
-    %%
-    %% SUA_TABELA ||--o{ AUTH_USERS : "pertence a"
-    %% ============================================================================
+    PROFILES {
+        uuid id PK "Chave primária"
+        uuid user_id FK "Referência ao auth.users"
+        string full_name "Nome completo (opcional)"
+        string avatar_url "URL do avatar (opcional)"
+        jsonb metadata "Dados extras em JSONB"
+        timestamp created_at "Timestamp de criação"
+        timestamp updated_at "Timestamp de atualização (trigger)"
+    }
+
+    PROFILES ||--o{ AUTH_USERS : "pertence a"
 ```
 
 ---
@@ -113,9 +110,46 @@ Tabela de autenticação gerenciada automaticamente pelo Supabase Auth.
 
 ---
 
-## 🔐 Row Level Security (RLS)
+## � Tabelas do Template
 
-**Status:** ⚠️ Nenhuma política configurada (banco limpo)
+### `profiles` (Exemplo com RLS completo)
+
+Tabela de perfil de usuário. Demonstra o padrão obrigatório: RLS + trigger de auditoria.
+
+**Campos:**
+
+| Campo        | Tipo        | Descrição                                   |
+| ------------ | ----------- | ------------------------------------------- |
+| `id`         | UUID PK     | Chave primária (auto-gerada)                |
+| `user_id`    | UUID FK     | Referência a `auth.users(id)` com CASCADE   |
+| `full_name`  | TEXT        | Nome completo (opcional)                    |
+| `avatar_url` | TEXT        | URL do avatar (opcional)                    |
+| `metadata`   | JSONB       | Dados extras em JSONB (default `{}`)        |
+| `created_at` | TIMESTAMPTZ | Timestamp de criação                        |
+| `updated_at` | TIMESTAMPTZ | Timestamp de atualização (auto via trigger) |
+
+**Índices:** `idx_profiles_user_id` (busca por user_id)
+
+**RLS:** Habilitado com 4 políticas (SELECT, INSERT, UPDATE, DELETE) — usuário só acessa próprios dados.
+
+**Trigger:** `set_timestamp_profiles` — atualiza `updated_at` automaticamente.
+
+> 💡 Esta tabela é um **exemplo** e pode ser deletada sem impacto no template.
+
+---
+
+## �🔐 Row Level Security (RLS)
+
+**Status:** ✅ RLS habilitado na tabela exemplo `profiles`
+
+**Políticas Configuradas:**
+
+| Tabela     | Política              | Operação | Condição               |
+| ---------- | --------------------- | -------- | ---------------------- |
+| `profiles` | `profiles_select_own` | SELECT   | `auth.uid() = user_id` |
+| `profiles` | `profiles_insert_own` | INSERT   | `auth.uid() = user_id` |
+| `profiles` | `profiles_update_own` | UPDATE   | `auth.uid() = user_id` |
+| `profiles` | `profiles_delete_own` | DELETE   | `auth.uid() = user_id` |
 
 **Protocolo Obrigatório:**
 Quando você criar sua primeira tabela:

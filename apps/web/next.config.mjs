@@ -27,6 +27,14 @@ const nextConfig = {
         },
       }
     : {}),
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
+  },
   async headers() {
     return [
       {
