@@ -9,7 +9,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig = {
   reactStrictMode: true,
   ...(process.env.BUILD_STANDALONE === "true" ? { output: "standalone" } : {}),
-  transpilePackages: ["@repo/ui", "@repo/supabase", "@repo/tailwind-config", "@repo/logger"],
+  transpilePackages: ["@repo/ui", "@repo/supabase", "@repo/tailwind-config", "@repo/logger", "echarts", "echarts-for-react"],
   // React Compiler — otimiza re-renders automaticamente (React 19)
   // Ative com ENABLE_REACT_COMPILER=true
   ...(process.env.ENABLE_REACT_COMPILER === "true"

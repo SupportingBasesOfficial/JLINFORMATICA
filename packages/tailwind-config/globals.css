@@ -1,65 +1,178 @@
 /*
  * @repo/tailwind-config — Base CSS para Tailwind v3
  *
- * Cada app importa este arquivo via postcss.config.mjs.
- * Tokens de design específicos do projeto são adicionados aqui ao instanciar.
- *
- * Uso no app:
- *   import "@repo/tailwind-config/globals.css" no app/layout.tsx
+ * JL Informatica — Tema dark permanente (monitoramento de servidores).
+ * Tokens em HSL derivados do mockup (#0B1015, #10171C, #1E2530, etc).
  */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/*
- * Tokens de design shadcn/ui (neutral base color, HSL).
- * Necessários para os componentes @repo/ui (Button, Card, etc).
- * Personalize ao instanciar o projeto — troque baseColor em components.json também.
- */
+@keyframes jlblink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    /* Background base: #0B1015 → hsl(210, 33%, 6%) */
+    --background: 210 33% 6%;
+    /* Foreground principal: #C9D4DA → hsl(204, 16%, 82%) */
+    --foreground: 204 16% 82%;
+    /* Card: #10171C → hsl(210, 24%, 9%) */
+    --card: 210 24% 9%;
+    --card-foreground: 204 16% 82%;
+    /* Popover: mesmo que card */
+    --popover: 210 24% 9%;
+    --popover-foreground: 204 16% 82%;
+    /* Primary: teal #1BA898 → hsl(173, 71%, 37%) */
+    --primary: 173 71% 37%;
+    --primary-foreground: 210 33% 6%;
+    /* Secondary: #1E2530 → hsl(215, 23%, 15%) */
+    --secondary: 215 23% 15%;
+    --secondary-foreground: 204 16% 82%;
+    /* Muted: #1E2530 → hsl(215, 23%, 15%) */
+    --muted: 215 23% 15%;
+    /* Muted foreground: #6E7F88 → hsl(202, 12%, 48%) */
+    --muted-foreground: 202 12% 48%;
+    /* Accent: #1E2530 */
+    --accent: 215 23% 15%;
+    --accent-foreground: 204 16% 82%;
+    /* Destructive: #E5484D → hsl(358, 76%, 59%) */
+    --destructive: 358 76% 59%;
+    --destructive-foreground: 210 33% 6%;
+    /* Border: #1E2530 → hsl(215, 23%, 15%) */
+    --border: 215 23% 15%;
+    --input: 215 23% 15%;
+    /* Ring: teal */
+    --ring: 173 71% 37%;
     --radius: 0.5rem;
+
+    /* Cores customizadas JL Informatica (hex direto via arbitrary values) */
+    --jl-bg: #0b1015;
+    --jl-card: #10171c;
+    --jl-border: #1e2530;
+    --jl-text: #c9d4da;
+    --jl-muted: #6e7f88;
+    --jl-teal: #1ba898;
+    --jl-cyan: #35d0c4;
+    --jl-blue: #3aa0ff;
+    --jl-purple: #8e7cff;
+    --jl-amber: #f5a623;
+    --jl-red: #e5484d;
+    --jl-green: #3dd68c;
   }
 
+  /* Tema dark permanente — sem light mode */
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --background: 210 33% 6%;
+    --foreground: 204 16% 82%;
+    --card: 210 24% 9%;
+    --card-foreground: 204 16% 82%;
+    --popover: 210 24% 9%;
+    --popover-foreground: 204 16% 82%;
+    --primary: 173 71% 37%;
+    --primary-foreground: 210 33% 6%;
+    --secondary: 215 23% 15%;
+    --secondary-foreground: 204 16% 82%;
+    --muted: 215 23% 15%;
+    --muted-foreground: 202 12% 48%;
+    --accent: 215 23% 15%;
+    --accent-foreground: 204 16% 82%;
+    --destructive: 358 76% 59%;
+    --destructive-foreground: 210 33% 6%;
+    --border: 215 23% 15%;
+    --input: 215 23% 15%;
+    --ring: 173 71% 37%;
+  }
+}
+
+@layer utilities {
+  .jl-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #1e2530 transparent;
+  }
+  .jl-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .jl-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .jl-scroll::-webkit-scrollbar-thumb {
+    background-color: #1e2530;
+    border-radius: 3px;
+  }
+  .jl-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #2a3340;
+  }
+
+  /* Glassmorphism para cards elevados */
+  .jl-glass {
+    background: rgba(16, 23, 28, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Gradient border sutil */
+  .jl-gradient-border {
+    position: relative;
+  }
+  .jl-gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(27, 168, 152, 0.15),
+      rgba(53, 208, 196, 0.05),
+      transparent
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Glow ring para elementos críticos */
+  .jl-glow-teal {
+    box-shadow: 0 0 12px rgba(27, 168, 152, 0.15);
+  }
+  .jl-glow-red {
+    box-shadow: 0 0 12px rgba(229, 72, 77, 0.15);
+  }
+  .jl-glow-amber {
+    box-shadow: 0 0 12px rgba(245, 166, 35, 0.15);
+  }
+
+  /* Shimmer para skeleton */
+  .jl-shimmer {
+    background: linear-gradient(90deg, #10171c 25%, #1a2530 50%, #10171c 75%);
+    background-size: 200% 100%;
+    animation: jlshimmer 1.5s infinite;
+  }
+
+  @keyframes jlshimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
   }
 }

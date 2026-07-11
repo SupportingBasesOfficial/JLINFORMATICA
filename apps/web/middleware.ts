@@ -11,7 +11,8 @@ import { type NextRequest, NextResponse } from "next/server";
  * DELETÁVEL: Se você não usar Supabase, pode deletar este arquivo.
  */
 
-const publicRoutes = ["/", "/auth/callback"];
+// TODO: Remover /dashboard quando Supabase Auth estiver configurado
+const publicRoutes = ["/", "/auth/callback", "/dashboard"];
 
 export async function middleware(request: NextRequest) {
   const { response, user } = await updateSession(request);

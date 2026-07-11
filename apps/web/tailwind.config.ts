@@ -44,6 +44,24 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Cores JL Informatica (hex direto do mockup)
+        jl: {
+          bg: "#0B1015",
+          card: "#10171C",
+          border: "#1E2530",
+          text: "#C9D4DA",
+          muted: "#6E7F88",
+          teal: "#1BA898",
+          cyan: "#35D0C4",
+          blue: "#3AA0FF",
+          purple: "#8E7CFF",
+          amber: "#F5A623",
+          red: "#E5484D",
+          green: "#3DD68C",
+        },
+      },
+      fontFamily: {
+        mono: ["JetBrains Mono", "Consolas", "monospace"],
       },
       borderRadius: {
         lg: "var(--radius)",

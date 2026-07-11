@@ -6,32 +6,25 @@ import { WebVitalsReporter } from "./web-vitals";
 
 export const metadata = {
   title: {
-    default: "Base Template",
-    template: "%s — Base Template",
+    default: "JL Informática — Monitoramento",
+    template: "%s — JL Informática",
   },
   description:
-    "Base Template Universal - Monorepo Turborepo + Next.js + Supabase",
-  applicationName: "Base Template",
-  authors: [{ name: "SupportingBases" }],
-  keywords: [
-    "monorepo",
-    "turborepo",
-    "next.js",
-    "supabase",
-    "typescript",
-    "template",
-  ],
+    "Painel executivo de monitoramento de infraestrutura Windows Server",
+  applicationName: "JL Informática",
+  authors: [{ name: "JL Informática" }],
+  keywords: ["monitoramento", "windows server", "infraestrutura", "dashboard"],
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    title: "Base Template Universal",
-    description: "Monorepo Turborepo + Next.js 15 + Supabase + TypeScript",
-    siteName: "Base Template",
+    title: "JL Informática — Monitoramento",
+    description: "Painel executivo de infraestrutura Windows Server",
+    siteName: "JL Informática",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Base Template Universal",
-    description: "Monorepo Turborepo + Next.js 15 + Supabase + TypeScript",
+    title: "JL Informática — Monitoramento",
+    description: "Painel executivo de infraestrutura Windows Server",
   },
   robots: {
     index: true,
@@ -46,8 +39,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
-      <body>
+    <html lang="pt-BR" suppressHydrationWarning className="dark">
+      <body className="font-mono">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
