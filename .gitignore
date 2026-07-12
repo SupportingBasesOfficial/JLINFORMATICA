@@ -1,4 +1,4 @@
-# --- Gerenciamento de Dependências e Cache ---
+# --- Gerenciamento de Dependencias e Cache ---
 node_modules
 .pnpm-debug.log*
 .pnpm-store
@@ -14,7 +14,7 @@ dist/
 .vercel
 *.tsbuildinfo
 
-# --- Variáveis de Ambiente (Segurança Máxima) ---
+# --- Variaveis de Ambiente (Seguranca Maxima) ---
 .env
 .env.local
 .env.development.local
