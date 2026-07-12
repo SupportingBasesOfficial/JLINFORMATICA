@@ -1,6 +1,6 @@
 "use client";
 
-import { useReportWebVitals } from "next/webvitals";
+import { useReportWebVitals } from "next/web-vitals";
 import { logger } from "@repo/logger";
 
 export function WebVitalsReporter() {
