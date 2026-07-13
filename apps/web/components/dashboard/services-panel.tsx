@@ -68,7 +68,6 @@ export function ServicesPanel({ services }: ServicesPanelProps) {
               ? `${stopped.length} de ${total} serviço(s) parado(s)`
               : `Todos os ${total} serviços operacionais`}
           </div>
-          {/* Mini stats */}
           <div className="flex gap-3 mt-2 text-[9px]">
             <span className="text-jl-muted">
               <b className="text-jl-green">{running.length}</b> ativos
@@ -84,37 +83,41 @@ export function ServicesPanel({ services }: ServicesPanelProps) {
           <div className="text-jl-muted text-[9px] mb-2">
             Serviços Monitorados ({total})
           </div>
-          <div className="grid grid-cols-[1fr_120px] pb-1 border-b border-jl-border mb-1">
-            <span className="text-jl-muted text-[9px] font-bold">SERVIÇO</span>
-            <span className="text-jl-muted text-[9px] font-bold">STATUS</span>
-          </div>
-          <div className="max-h-[180px] overflow-y-auto jl-scroll">
-            {services.map((svc) => {
-              const style = STATUS_STYLES[svc.status] ?? STATUS_STYLES.running;
-              return (
-                <div
-                  key={svc.name}
-                  className="grid grid-cols-[1fr_120px] items-center py-1.5 hover:bg-white/5 rounded-sm transition-colors"
-                >
-                  <span className="flex items-center gap-2 text-jl-text text-[11px] truncate">
-                    <span
-                      className="w-2 h-2 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: style.color }}
-                    />
-                    <span className="truncate">{svc.displayName}</span>
-                    <span className="text-jl-muted text-[9px] truncate">
-                      ({svc.name})
-                    </span>
-                  </span>
-                  <span
-                    className="text-[11px] font-bold px-1.5 py-0.5 rounded-sm inline-block text-center"
-                    style={{ color: style.color, backgroundColor: style.bg }}
-                  >
-                    {style.label}
-                  </span>
-                </div>
-              );
-            })}
+          <div className="overflow-x-auto jl-scroll">
+            <div className="min-w-[280px]">
+              <div className="grid grid-cols-[1fr_110px] pb-1 border-b border-jl-border mb-1">
+                <span className="text-jl-muted text-[9px] font-bold">SERVIÇO</span>
+                <span className="text-jl-muted text-[9px] font-bold">STATUS</span>
+              </div>
+              <div className="max-h-[180px] overflow-y-auto jl-scroll">
+                {services.map((svc) => {
+                  const style = STATUS_STYLES[svc.status] ?? STATUS_STYLES.running;
+                  return (
+                    <div
+                      key={svc.name}
+                      className="grid grid-cols-[1fr_110px] items-center py-1.5 hover:bg-white/5 rounded-sm transition-colors"
+                    >
+                      <span className="flex items-center gap-2 text-jl-text text-[11px] min-w-0">
+                        <span
+                          className="w-2 h-2 rounded-full flex-shrink-0"
+                          style={{ backgroundColor: style.color }}
+                        />
+                        <span className="truncate">{svc.displayName}</span>
+                        <span className="text-jl-muted text-[9px] truncate hidden sm:inline">
+                          ({svc.name})
+                        </span>
+                      </span>
+                      <span
+                        className="text-[10px] sm:text-[11px] font-bold px-1.5 py-0.5 rounded-sm inline-block text-center"
+                        style={{ color: style.color, backgroundColor: style.bg }}
+                      >
+                        {style.label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </div>
