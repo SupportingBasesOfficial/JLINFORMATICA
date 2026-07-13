@@ -38,7 +38,7 @@ jobs:
 
       - name: Install Zero-Error validators dependencies
         run: |
-          if [ -d .zero-error ]; then
+          if [ -d .zero-error ] && [ -f .zero-error/validators/index.js ]; then
             cd .zero-error && npm install --production 2>/dev/null || true
           fi
 
@@ -49,10 +49,10 @@ jobs:
 
       - name: Run Zero-Error validators (CI mode)
         run: |
-          if [ -d .zero-error ]; then
+          if [ -d .zero-error ] && [ -f .zero-error/validators/index.js ]; then
             node .zero-error/validators/index.js ci
           else
-            echo "Zero-Error: .zero-error/ not found. Skipping."
+            echo "Zero-Error: validators/index.js not found. Skipping."
           fi
 
       - name: Upload Zero-Error report
