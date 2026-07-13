@@ -131,21 +131,20 @@ export function DiskMetrics({
               const totalGB = (drive.totalBytes / 1024 / 1024 / 1024).toFixed(
                 0,
               );
-              // Projecao: se crescimento de 2% ao dia, em quantos dias lota
               const daysToFull =
                 drive.utilization > 0 && drive.utilization < 100
                   ? Math.floor((100 - drive.utilization) / 2)
                   : 0;
               return (
                 <div key={drive.letter}>
-                  <div className="flex justify-between text-jl-text text-[10px] mb-1">
-                    <span>
+                  <div className="flex justify-between text-jl-text text-[10px] mb-1 gap-2">
+                    <span className="min-w-0">
                       {idx} {drive.letter}{" "}
                       <span className="text-jl-muted/50 text-[8px]">
                         {freeGB}GB livres de {totalGB}GB
                       </span>
                     </span>
-                    <span style={{ color }} className="font-bold">
+                    <span style={{ color }} className="font-bold flex-shrink-0">
                       {drive.utilization.toFixed(1)}%
                     </span>
                   </div>
@@ -180,7 +179,7 @@ export function DiskMetrics({
               IOPS — Leituras e Gravações por Segundo
             </span>
           </div>
-          <div className="flex gap-3.5 mb-1.5 text-[10px]">
+          <div className="flex flex-wrap gap-x-3.5 gap-y-1 mb-1.5 text-[10px]">
             <span className="flex items-center gap-1.5 text-jl-text">
               <span className="w-2 h-2 bg-jl-teal rounded-sm" />
               leitura
@@ -219,7 +218,7 @@ export function DiskMetrics({
             label1="lat-read"
             label2="lat-write"
           />
-          <div className="flex gap-3 text-[9px] mt-1">
+          <div className="flex flex-wrap gap-x-3 gap-y-0.5 text-[9px] mt-1">
             <span className="text-jl-muted">
               Leitura <b className="text-jl-teal">{latencySummary.readMs} ms</b>
             </span>
@@ -242,7 +241,7 @@ export function DiskMetrics({
             label1="q-read"
             label2="q-write"
           />
-          <div className="flex gap-3 text-[9px] mt-1">
+          <div className="flex flex-wrap gap-x-3 gap-y-0.5 text-[9px] mt-1">
             <span className="text-jl-muted">
               Leitura <b style={{ color: "#8E7CFF" }}>{queueSummary.read}</b>
             </span>
