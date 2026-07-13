@@ -35,7 +35,6 @@ export function DiskTreemap({ data }: DiskTreemapProps) {
     let disposed = false;
     let handleResize: (() => void) | null = null;
 
-    // Dynamic import para evitar SSR issues com ECharts workers
     import("echarts")
       .then((echarts): void => {
         if (disposed || !chartRef.current) return;
@@ -125,9 +124,7 @@ export function DiskTreemap({ data }: DiskTreemapProps) {
         handleResize = () => chart.resize();
         window.addEventListener("resize", handleResize);
       })
-      .catch(() => {
-        // ECharts pode falhar ao carregar no SSR — ignorar silenciosamente
-      });
+      .catch(() => {});
 
     return () => {
       disposed = true;
@@ -153,7 +150,7 @@ export function DiskTreemap({ data }: DiskTreemapProps) {
         <div className="text-jl-muted text-[10px] px-2 py-1">
           C: (Sistema) &gt; Users
         </div>
-        <div ref={chartRef} className="w-full h-[340px]" />
+        <div ref={chartRef} className="w-full h-[220px] md:h-[340px]" />
       </div>
     </>
   );
