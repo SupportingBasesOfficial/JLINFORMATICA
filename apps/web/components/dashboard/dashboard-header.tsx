@@ -42,16 +42,15 @@ export function DashboardHeader({
 
   return (
     <div className="mb-4">
-      {/* Title + filters row */}
-      <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+      <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center justify-between gap-2 mb-3">
         <div className="text-sm font-medium text-jl-text">
           Painel Executivo — Infraestrutura Windows Server
         </div>
-        <div className="flex gap-2 text-[11px]">
+        <div className="flex flex-wrap gap-2 text-[11px] w-full sm:w-auto">
           <select
             value={selectedServer}
             onChange={(e) => onServerChange(e.target.value)}
-            className="bg-jl-card text-jl-muted px-2.5 py-1 rounded border border-jl-border cursor-pointer outline-none hover:border-jl-teal transition-colors"
+            className="bg-jl-card text-jl-muted px-2.5 py-1 rounded border border-jl-border cursor-pointer outline-none hover:border-jl-teal transition-colors flex-1 sm:flex-none min-w-0"
           >
             {servers.map((s) => (
               <option key={s.id} value={s.id}>
@@ -62,7 +61,7 @@ export function DashboardHeader({
           <select
             value={selectedTime}
             onChange={(e) => onTimeChange(e.target.value)}
-            className="bg-jl-card text-jl-muted px-2.5 py-1 rounded border border-jl-border cursor-pointer outline-none hover:border-jl-teal transition-colors"
+            className="bg-jl-card text-jl-muted px-2.5 py-1 rounded border border-jl-border cursor-pointer outline-none hover:border-jl-teal transition-colors flex-1 sm:flex-none min-w-0"
           >
             {timeWindows.map((t) => (
               <option key={t.id} value={t.id}>
@@ -73,7 +72,7 @@ export function DashboardHeader({
           <select
             value={refreshInterval}
             onChange={(e) => onRefreshIntervalChange(Number(e.target.value))}
-            className="bg-jl-card text-jl-muted px-2.5 py-1 rounded border border-jl-border cursor-pointer outline-none hover:border-jl-teal transition-colors"
+            className="bg-jl-card text-jl-muted px-2.5 py-1 rounded border border-jl-border cursor-pointer outline-none hover:border-jl-teal transition-colors flex-1 sm:flex-none min-w-0"
             title="Intervalo de auto-refresh"
           >
             {REFRESH_OPTIONS.map((r) => (
@@ -85,7 +84,6 @@ export function DashboardHeader({
         </div>
       </div>
 
-      {/* Server info bar */}
       {server && (
         <div className="flex flex-wrap items-center gap-x-5 gap-y-1 bg-jl-card rounded-md px-3.5 py-2 text-[10px]">
           <span className="flex items-center gap-1.5">
