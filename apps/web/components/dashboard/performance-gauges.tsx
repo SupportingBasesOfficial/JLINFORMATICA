@@ -79,9 +79,9 @@ function Gauge({ label, value, color, avg }: GaugeProps) {
   const gradientId = `gauge-grad-${label.replace(/\s/g, "")}`;
 
   return (
-    <div className="group relative jl-glass jl-gradient-border rounded-md p-2.5 flex flex-col items-center cursor-pointer">
+    <div className="group relative z-0 hover:z-30 jl-glass jl-gradient-border rounded-md p-2.5 flex flex-col items-center cursor-pointer transition-[z-index] duration-0">
       {/* Tooltip */}
-      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-jl-bg border border-jl-border rounded-md px-3 py-2 text-[11px] leading-relaxed opacity-0 pointer-events-none transition-opacity duration-150 group-hover:opacity-100 z-10 shadow-lg w-[200px] max-w-[calc(100vw-1rem)]">
+      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-jl-bg border border-jl-border rounded-md px-3 py-2 text-[11px] leading-relaxed opacity-0 pointer-events-none transition-opacity duration-150 group-hover:opacity-100 z-50 shadow-lg w-[200px] max-w-[calc(100vw-1rem)]">
         <div className="text-jl-muted font-bold mb-0.5">MÉDIA DE {label}</div>
         <div className="flex flex-col gap-0.5">
           <span>
@@ -205,7 +205,7 @@ function Sparkline({ values, color, label }: SparklineProps) {
   const hoverPoint = hoverIdx !== null ? (points.at(hoverIdx) ?? null) : null;
 
   return (
-    <div className="jl-glass jl-gradient-border rounded-md p-2.5 px-3.5">
+    <div className="jl-glass jl-gradient-border rounded-md p-2.5 px-3.5 relative z-0">
       <div className="flex items-center justify-between mb-1.5">
         <span className="text-jl-muted text-[9px]">{label}</span>
         <span className="text-[10px] font-bold" style={{ color }}>
