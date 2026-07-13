@@ -85,7 +85,7 @@ export function ProcessTable({ processes }: ProcessTableProps) {
 
   return (
     <>
-      <div className="flex items-center justify-between mx-0.5 mb-1.5">
+      <div className="flex items-center justify-between mx-0.5 mb-1.5 gap-2">
         <span className="text-jl-muted text-[11px] font-bold tracking-wide">
           PROCESSOS EM EXECUÇÃO
         </span>
@@ -94,88 +94,92 @@ export function ProcessTable({ processes }: ProcessTableProps) {
           placeholder="buscar processo..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="bg-jl-card text-jl-text text-[10px] px-2.5 py-1 rounded border border-jl-border outline-none focus:border-jl-teal transition-colors w-[160px]"
+          className="bg-jl-card text-jl-text text-[10px] px-2.5 py-1 rounded border border-jl-border outline-none focus:border-jl-teal transition-colors w-[120px] md:w-[160px] flex-shrink-0"
         />
       </div>
       <div className="bg-jl-card rounded-md p-3 px-3.5 border border-transparent hover:border-jl-border transition-colors">
-        <div className="grid grid-cols-[60px_1fr_90px_80px] pb-1.5 border-b border-jl-border mb-1">
-          <button
-            onClick={() => toggleSort("pid")}
-            className="text-jl-muted text-[9px] font-bold text-left hover:text-jl-text transition-colors"
-          >
-            PID
-            <SortArrow col="pid" sortKey={sortKey} sortDir={sortDir} />
-          </button>
-          <button
-            onClick={() => toggleSort("name")}
-            className="text-jl-muted text-[9px] font-bold text-left hover:text-jl-text transition-colors"
-          >
-            NOME
-            <SortArrow col="name" sortKey={sortKey} sortDir={sortDir} />
-          </button>
-          <button
-            onClick={() => toggleSort("cpuPercent")}
-            className="text-jl-muted text-[9px] font-bold text-right hover:text-jl-text transition-colors"
-          >
-            CPU %
-            <SortArrow col="cpuPercent" sortKey={sortKey} sortDir={sortDir} />
-          </button>
-          <button
-            onClick={() => toggleSort("memMb")}
-            className="text-jl-muted text-[9px] font-bold text-right hover:text-jl-text transition-colors"
-          >
-            MEM MB
-            <SortArrow col="memMb" sortKey={sortKey} sortDir={sortDir} />
-          </button>
-        </div>
-        <div className="max-h-[240px] overflow-y-auto jl-scroll">
-          {filtered.length === 0 ? (
-            <div className="py-3 text-center text-jl-muted text-[10px]">
-              Nenhum processo encontrado para &quot;{search}&quot;
-            </div>
-          ) : (
-            filtered.map((proc, idx) => (
-              <div
-                key={proc.pid}
-                className="grid grid-cols-[60px_1fr_90px_80px] items-center py-1 hover:bg-white/5 rounded-sm transition-colors"
-                style={{
-                  backgroundColor:
-                    idx % 2 === 0 ? "transparent" : "rgba(255,255,255,0.015)",
-                }}
+        <div className="overflow-x-auto jl-scroll">
+          <div className="min-w-[320px]">
+            <div className="grid grid-cols-[60px_1fr_90px_80px] pb-1.5 border-b border-jl-border mb-1">
+              <button
+                onClick={() => toggleSort("pid")}
+                className="text-jl-muted text-[9px] font-bold text-left hover:text-jl-text transition-colors"
               >
-                <span className="text-jl-muted text-[10px]">{proc.pid}</span>
-                <span className="text-jl-text text-[10px] truncate">
-                  {proc.name}
-                </span>
-                <span className="flex items-center justify-end gap-1.5">
-                  <span className="flex-1 max-w-[40px] bg-white/5 h-[3px] rounded-sm overflow-hidden">
-                    <span
-                      className="h-[3px] rounded-sm"
-                      style={{
-                        width: `${(proc.cpuPercent / maxCpu) * 100}%`,
-                        backgroundColor: getCpuColor(proc.cpuPercent),
-                      }}
-                    />
-                  </span>
-                  <span
-                    className="text-[10px] font-bold text-right w-[40px]"
-                    style={{ color: getCpuColor(proc.cpuPercent) }}
+                PID
+                <SortArrow col="pid" sortKey={sortKey} sortDir={sortDir} />
+              </button>
+              <button
+                onClick={() => toggleSort("name")}
+                className="text-jl-muted text-[9px] font-bold text-left hover:text-jl-text transition-colors"
+              >
+                NOME
+                <SortArrow col="name" sortKey={sortKey} sortDir={sortDir} />
+              </button>
+              <button
+                onClick={() => toggleSort("cpuPercent")}
+                className="text-jl-muted text-[9px] font-bold text-right hover:text-jl-text transition-colors"
+              >
+                CPU %
+                <SortArrow col="cpuPercent" sortKey={sortKey} sortDir={sortDir} />
+              </button>
+              <button
+                onClick={() => toggleSort("memMb")}
+                className="text-jl-muted text-[9px] font-bold text-right hover:text-jl-text transition-colors"
+              >
+                MEM MB
+                <SortArrow col="memMb" sortKey={sortKey} sortDir={sortDir} />
+              </button>
+            </div>
+            <div className="max-h-[240px] overflow-y-auto jl-scroll">
+              {filtered.length === 0 ? (
+                <div className="py-3 text-center text-jl-muted text-[10px]">
+                  Nenhum processo encontrado para &quot;{search}&quot;
+                </div>
+              ) : (
+                filtered.map((proc, idx) => (
+                  <div
+                    key={proc.pid}
+                    className="grid grid-cols-[60px_1fr_90px_80px] items-center py-1 hover:bg-white/5 rounded-sm transition-colors"
+                    style={{
+                      backgroundColor:
+                        idx % 2 === 0 ? "transparent" : "rgba(255,255,255,0.015)",
+                    }}
                   >
-                    {proc.cpuPercent.toFixed(1)}
-                  </span>
-                </span>
-                <span
-                  className="text-[10px] text-right"
-                  style={{ color: getMemColor(proc.memMb) }}
-                >
-                  {proc.memMb}
-                </span>
-              </div>
-            ))
-          )}
-        </div>
-        <div className="text-jl-muted text-[9px] mt-1.5 pt-1 border-t border-jl-border/50">
-          {filtered.length} processo(s) exibido(s) de {processes.length} total
+                    <span className="text-jl-muted text-[10px]">{proc.pid}</span>
+                    <span className="text-jl-text text-[10px] truncate">
+                      {proc.name}
+                    </span>
+                    <span className="flex items-center justify-end gap-1.5">
+                      <span className="flex-1 max-w-[40px] bg-white/5 h-[3px] rounded-sm overflow-hidden">
+                        <span
+                          className="h-[3px] rounded-sm"
+                          style={{
+                            width: `${(proc.cpuPercent / maxCpu) * 100}%`,
+                            backgroundColor: getCpuColor(proc.cpuPercent),
+                          }}
+                        />
+                      </span>
+                      <span
+                        className="text-[10px] font-bold text-right w-[40px]"
+                        style={{ color: getCpuColor(proc.cpuPercent) }}
+                      >
+                        {proc.cpuPercent.toFixed(1)}
+                      </span>
+                    </span>
+                    <span
+                      className="text-[10px] text-right"
+                      style={{ color: getMemColor(proc.memMb) }}
+                    >
+                      {proc.memMb}
+                    </span>
+                  </div>
+                ))
+              )}
+            </div>
+            <div className="text-jl-muted text-[9px] mt-1.5 pt-1 border-t border-jl-border/50">
+              {filtered.length} processo(s) exibido(s) de {processes.length} total
+            </div>
+          </div>
         </div>
       </div>
     </>
