@@ -56,11 +56,11 @@ export function AlertsTimeline({ alerts }: AlertsTimelineProps) {
 
   return (
     <>
-      <div className="flex items-center justify-between mx-0.5 mb-2.5">
+      <div className="flex items-center justify-between mx-0.5 mb-2.5 gap-2">
         <span className="text-jl-muted text-[11px] font-bold tracking-wide">
           TIMELINE DE ALERTAS
         </span>
-        <div className="flex gap-2.5 text-[9px]">
+        <div className="flex gap-2.5 text-[9px] flex-shrink-0">
           {criticalCount > 0 && (
             <span className="text-jl-red font-bold">
               {criticalCount} crítico{criticalCount > 1 ? "s" : ""}
@@ -76,7 +76,6 @@ export function AlertsTimeline({ alerts }: AlertsTimelineProps) {
       <div className="bg-jl-card rounded-md p-3 px-3.5 border border-transparent hover:border-jl-border transition-colors mb-4">
         <div className="max-h-[200px] overflow-y-auto jl-scroll">
           <div className="relative">
-            {/* Linha vertical da timeline */}
             <div className="absolute left-[7px] top-0 bottom-0 w-px bg-jl-border" />
 
             {sorted.map((alert) => {
@@ -86,7 +85,6 @@ export function AlertsTimeline({ alerts }: AlertsTimelineProps) {
                   key={alert.id}
                   className="relative pl-6 pb-3 last:pb-0 hover:bg-white/[0.02] rounded-sm transition-colors -ml-1 pr-2"
                 >
-                  {/* Ponto na timeline */}
                   <span
                     className="absolute left-[3px] top-1 w-[9px] h-[9px] rounded-full border-2 border-jl-bg"
                     style={{
@@ -99,9 +97,9 @@ export function AlertsTimeline({ alerts }: AlertsTimelineProps) {
                   />
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-1.5 mb-0.5">
+                      <div className="flex items-center gap-1.5 mb-0.5 flex-wrap">
                         <span
-                          className="text-[8px] font-bold px-1 py-0.5 rounded-sm"
+                          className="text-[8px] font-bold px-1 py-0.5 rounded-sm flex-shrink-0"
                           style={{
                             color: style.color,
                             backgroundColor: style.bg,
@@ -109,7 +107,7 @@ export function AlertsTimeline({ alerts }: AlertsTimelineProps) {
                         >
                           {style.label}
                         </span>
-                        <span className="text-jl-text text-[11px] font-medium truncate">
+                        <span className="text-jl-text text-[11px] font-medium truncate min-w-0">
                           {alert.title}
                         </span>
                       </div>
