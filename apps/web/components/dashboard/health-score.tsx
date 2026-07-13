@@ -13,8 +13,7 @@ export function HealthScore({ score }: HealthScoreProps) {
   const offset = circumference - (score / 100) * circumference;
 
   return (
-    <div className="flex items-center gap-3 jl-glass jl-gradient-border rounded-md px-3.5 py-2">
-      {/* Anel SVG */}
+    <div className="flex items-center gap-3 jl-glass jl-gradient-border rounded-md px-3.5 py-2 min-w-0 overflow-hidden">
       <div className="relative flex-shrink-0">
         <svg width="64" height="64" viewBox="0 0 64 64">
           <defs>
@@ -23,7 +22,6 @@ export function HealthScore({ score }: HealthScoreProps) {
               <stop offset="100%" stopColor={color} stopOpacity={0.6} />
             </linearGradient>
           </defs>
-          {/* Track */}
           <circle
             cx="32"
             cy="32"
@@ -32,7 +30,6 @@ export function HealthScore({ score }: HealthScoreProps) {
             stroke="rgba(255,255,255,0.07)"
             strokeWidth="5"
           />
-          {/* Progress */}
           <circle
             cx="32"
             cy="32"
@@ -50,7 +47,6 @@ export function HealthScore({ score }: HealthScoreProps) {
             }}
           />
         </svg>
-        {/* Score no centro */}
         <div
           className="absolute inset-0 flex items-center justify-center text-lg font-bold"
           style={{ color }}
@@ -59,13 +55,12 @@ export function HealthScore({ score }: HealthScoreProps) {
         </div>
       </div>
 
-      {/* Label + descricao */}
-      <div className="min-w-0">
+      <div className="min-w-0 overflow-hidden">
         <div className="text-jl-muted text-[9px] font-bold">HEALTH SCORE</div>
-        <div className="text-sm font-bold" style={{ color }}>
+        <div className="text-sm font-bold truncate" style={{ color }}>
           {label}
         </div>
-        <div className="text-jl-muted text-[8px] mt-0.5">
+        <div className="text-jl-muted text-[8px] mt-0.5 truncate">
           CPU · Memória · Disco · Serviços
         </div>
       </div>
