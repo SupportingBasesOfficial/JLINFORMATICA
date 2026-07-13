@@ -64,7 +64,7 @@ export function NotificationBell({ alerts }: NotificationBellProps) {
             tabIndex={-1}
             aria-label="Fechar notificações"
           />
-          <div className="absolute right-0 top-full mt-1 w-[calc(100vw-1.5rem)] max-w-80 bg-jl-bg border border-jl-border rounded-lg shadow-2xl z-50 overflow-hidden">
+          <div className="fixed left-2 right-2 top-14 sm:absolute sm:left-auto sm:right-0 sm:top-full sm:w-80 bg-jl-bg border border-jl-border rounded-lg shadow-2xl z-50 overflow-hidden mt-1">
             <div className="flex items-center justify-between px-3 py-2 border-b border-jl-border">
               <span className="text-[11px] font-bold text-jl-text">
                 Notificações
