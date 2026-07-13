@@ -19,7 +19,6 @@ interface GaugeProps {
 function Gauge({ label, value, color, avg }: GaugeProps) {
   const [animatedValue, setAnimatedValue] = useState(0);
 
-  // Animar arco de 0 ao valor no mount
   useEffect(() => {
     const duration = 800;
     const start = performance.now();
@@ -82,9 +81,9 @@ function Gauge({ label, value, color, avg }: GaugeProps) {
   return (
     <div className="group relative jl-glass jl-gradient-border rounded-md p-2.5 flex flex-col items-center cursor-pointer">
       {/* Tooltip */}
-      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-jl-bg border border-jl-border rounded-md px-3 py-2 text-[11px] leading-relaxed whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-150 group-hover:opacity-100 z-10 shadow-lg">
+      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-jl-bg border border-jl-border rounded-md px-3 py-2 text-[11px] leading-relaxed opacity-0 pointer-events-none transition-opacity duration-150 group-hover:opacity-100 z-10 shadow-lg w-[200px] max-w-[calc(100vw-1rem)]">
         <div className="text-jl-muted font-bold mb-0.5">MÉDIA DE {label}</div>
-        <div className="flex gap-3">
+        <div className="flex flex-col gap-0.5">
           <span>
             1 min: <b className="text-jl-text">{avg.avg1.toFixed(1)}%</b>
           </span>
@@ -240,7 +239,6 @@ function Sparkline({ values, color, label }: SparklineProps) {
           points={`${pointsStr} ${width},${height} 0,${height}`}
           fill={`url(#${gradientId})`}
         />
-        {/* Ponto atual */}
         <circle
           cx={lastX}
           cy={lastY}
@@ -248,7 +246,6 @@ function Sparkline({ values, color, label }: SparklineProps) {
           fill={color}
           style={{ filter: `drop-shadow(0 0 3px ${color})` }}
         />
-        {/* Hover indicator */}
         {hoverPoint && (
           <>
             <line
@@ -307,11 +304,11 @@ export function PerformanceGauges({
     <>
       <div className="text-jl-muted text-[11px] font-bold tracking-wide mx-0.5 mb-1.5">
         DESEMPENHO{" "}
-        <span className="font-normal normal-case">
+        <span className="font-normal normal-case hidden sm:inline">
           (passe o mouse nos gauges e na sparkline)
         </span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr_2fr] gap-2.5 mb-4">
+      <div className="grid grid-cols-2 md:grid-cols-[1fr_1fr_2fr] gap-2.5 mb-4">
         <Gauge
           label="CPU"
           value={cpuGauge.current}
@@ -324,7 +321,9 @@ export function PerformanceGauges({
           color={memColor}
           avg={memGauge}
         />
-        <Sparkline values={cpuQueue} color={cpuColor} label="Fila de CPU" />
+        <div className="col-span-2 md:col-span-1">
+          <Sparkline values={cpuQueue} color={cpuColor} label="Fila de CPU" />
+        </div>
       </div>
     </>
   );
