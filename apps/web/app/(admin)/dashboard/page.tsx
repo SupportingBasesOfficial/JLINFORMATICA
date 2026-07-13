@@ -44,7 +44,6 @@ export default function DashboardPage() {
   const [prevMetrics, setPrevMetrics] = useState<ServerMetrics | null>(null);
   const metricsRef = useRef<ServerMetrics | null>(null);
 
-  // Carrega metricas iniciais quando troca servidor
   useEffect(() => {
     const timer = setTimeout(() => {
       const fresh = getServerMetrics(selectedServer);
@@ -60,7 +59,6 @@ export default function DashboardPage() {
     return () => clearTimeout(timer);
   }, [selectedServer]);
 
-  // Verifica cruzamento de threshold e dispara toast
   const checkThresholds = useCallback(
     (prev: ServerMetrics, next: ServerMetrics) => {
       const toasts: ToastMessage[] = [];
@@ -98,7 +96,6 @@ export default function DashboardPage() {
     [],
   );
 
-  // Auto-refresh com intervalo configuravel
   useEffect(() => {
     if (!metricsRef.current || isPaused) return;
 
@@ -118,7 +115,6 @@ export default function DashboardPage() {
     return () => clearInterval(interval);
   }, [selectedServer, refreshInterval, isPaused, checkThresholds]);
 
-  // Keyboard shortcuts
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (
@@ -137,7 +133,6 @@ export default function DashboardPage() {
     return () => window.removeEventListener("keydown", handleKey);
   }, []);
 
-  // Countdown "há Xs"
   useEffect(() => {
     const tick = setInterval(() => {
       setSecondsAgo(Math.floor((Date.now() - lastUpdate.getTime()) / 1000));
@@ -153,7 +148,7 @@ export default function DashboardPage() {
   const healthScore = calculateHealthScore(metrics);
 
   return (
-    <div className="bg-jl-bg rounded-xl p-4">
+    <div className="bg-jl-bg rounded-xl p-3 md:p-4">
       <h2 className="sr-only">
         Dashboard executivo Windows Server — visão geral, desempenho, rede,
         disco, serviços, alertas e processos
@@ -170,7 +165,7 @@ export default function DashboardPage() {
             onRefreshIntervalChange={setRefreshInterval}
           />
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <NotificationBell alerts={metrics.alerts} />
           <HealthScore score={healthScore} />
         </div>
@@ -220,8 +215,7 @@ export default function DashboardPage() {
 
       <ProcessTable processes={metrics.processes} />
 
-      {/* Footer com indicador de auto-refresh */}
-      <div className="mt-4 flex items-center justify-between text-[9px] text-jl-muted border-t border-jl-border pt-2.5">
+      <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[9px] text-jl-muted border-t border-jl-border pt-2.5">
         <span className="flex items-center gap-1.5">
           <span
             className={`inline-block w-1.5 h-1.5 rounded-full transition-colors ${isPaused ? "bg-jl-amber" : isRefreshing ? "bg-jl-teal" : "bg-jl-green"}`}
