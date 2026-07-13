@@ -50,7 +50,7 @@ export function NetworkMetrics({ network, summary }: NetworkMetricsProps) {
               Largura de Banda — Entrada e Saída
             </span>
           </div>
-          <div className="flex gap-3.5 mb-1.5 text-[10px]">
+          <div className="flex flex-wrap gap-x-3.5 gap-y-1 mb-1.5 text-[10px]">
             <span className="flex items-center gap-1.5 text-jl-text">
               <span className="w-2 h-2 bg-jl-blue rounded-sm" />
               entrada
@@ -99,7 +99,7 @@ export function NetworkMetrics({ network, summary }: NetworkMetricsProps) {
               strokeWidth={1.5}
             />
           </svg>
-          <div className="flex gap-3 text-[9px] mt-1">
+          <div className="flex flex-wrap gap-x-3 gap-y-0.5 text-[9px] mt-1">
             <span className="text-jl-muted">
               Média entrada{" "}
               <b className="text-jl-blue">{formatKbps(summary.avgInKbps)}</b>
