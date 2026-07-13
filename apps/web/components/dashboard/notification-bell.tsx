@@ -26,7 +26,6 @@ export function NotificationBell({ alerts }: NotificationBellProps) {
         className="relative flex items-center justify-center w-8 h-8 rounded-md bg-jl-card border border-jl-border hover:border-jl-teal transition-colors"
         title="Notificações"
       >
-        {/* Sino SVG */}
         <svg
           width="14"
           height="14"
@@ -39,7 +38,6 @@ export function NotificationBell({ alerts }: NotificationBellProps) {
           <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
           <path d="M13.73 21a2 2 0 0 1-3.46 0" />
         </svg>
-        {/* Badge */}
         {totalUnread > 0 && (
           <span
             className="absolute -top-1 -right-1 min-w-[14px] h-[14px] flex items-center justify-center text-[8px] font-bold rounded-full px-1"
@@ -54,7 +52,6 @@ export function NotificationBell({ alerts }: NotificationBellProps) {
         )}
       </button>
 
-      {/* Dropdown */}
       {open && (
         <>
           <div
@@ -67,8 +64,7 @@ export function NotificationBell({ alerts }: NotificationBellProps) {
             tabIndex={-1}
             aria-label="Fechar notificações"
           />
-          <div className="absolute right-0 top-full mt-1 w-80 bg-jl-bg border border-jl-border rounded-lg shadow-2xl z-50 overflow-hidden">
-            {/* Header */}
+          <div className="absolute right-0 top-full mt-1 w-[calc(100vw-1.5rem)] max-w-80 bg-jl-bg border border-jl-border rounded-lg shadow-2xl z-50 overflow-hidden">
             <div className="flex items-center justify-between px-3 py-2 border-b border-jl-border">
               <span className="text-[11px] font-bold text-jl-text">
                 Notificações
@@ -78,7 +74,6 @@ export function NotificationBell({ alerts }: NotificationBellProps) {
               </span>
             </div>
 
-            {/* Lista */}
             <div className="max-h-[280px] overflow-y-auto jl-scroll">
               {alerts.length === 0 ? (
                 <div className="px-3 py-6 text-center text-[11px] text-jl-muted">
@@ -119,7 +114,6 @@ export function NotificationBell({ alerts }: NotificationBellProps) {
               )}
             </div>
 
-            {/* Footer */}
             <div className="px-3 py-2 border-t border-jl-border">
               <button className="text-[10px] text-jl-teal hover:underline">
                 Marcar todas como lidas
